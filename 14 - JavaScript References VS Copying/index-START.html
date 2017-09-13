@@ -13,13 +13,58 @@
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+    const team = players;
+
+    team[3] = 'lux';
+
+    console.log(players);
+    console.log(team);
+
+    const team2 = players.slice(); // or [].concat(players) or [...players] or Array.from(players)
+    team2[3] = 'lolz';
+    console.log(team2);
+    console.log(players);
 
     // You might think we can just do something like this:
 
     // however what happens when we update that array?
 
     // now here is the problem!
+    const person = {
+      name: 'Wes Bro',
+      age: 34
+    }
 
+    const captain = person;
+    captain.name = 'loli'; // does not work
+
+    const captain2 = Object.assign({}, person, {age: 99}); // [...person] also works
+    console.log(captain2);
+    console.log(person);
+
+    const captain3 = {
+      name: "yada",
+      age: 56,
+      social: {
+        twitter: "lols",
+        facebook: "lmfao"
+      }
+    }
+
+    const captain4 = {...captain3};
+    const captain5 = Object.assign({}, captain3, {});
+
+    console.log(captain3);
+    console.log(captain4);
+    console.log(captain5);
+
+    captain3.social.twitter = "fdjiosfods";
+
+    console.log(captain3);
+    console.log(captain4);
+    console.log(captain5);
+
+    
     // oh no - we have edited the original array too!
 
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
